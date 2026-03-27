@@ -5,7 +5,6 @@
 <title>Gaming Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Minecraft-like font -->
 <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
 
 <style>
@@ -48,17 +47,70 @@ h1 {
   margin-bottom: 15px;
 }
 
-.music-btn {
+/* BUTTON */
+.btn, .music-btn {
+  display: block;
   width: 100%;
+  text-align: center;
   padding: 12px;
   border-radius: 30px;
   border: none;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+/* Hover */
+.btn:hover, .music-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Click */
+.btn:active, .music-btn:active {
+  transform: scale(0.95);
+}
+
+/* Ripple effect */
+.btn::after, .music-btn::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+}
+
+.btn:active::after, .music-btn:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 1;
+  transition: 0.4s;
+}
+
+/* COLORS */
+.music-btn {
   font-family: 'Minecraft', monospace;
-  font-size: 14px;
   background: linear-gradient(90deg, #00ff88, #00ccff);
   box-shadow: 0 0 20px #00ffcc;
   margin-bottom: 15px;
+}
+
+.btn {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  box-shadow: 0 0 18px #00c6ff;
+}
+
+.discord {
+  background: linear-gradient(90deg, #5865F2, #404EED);
+  box-shadow: 0 0 18px #5865F2;
 }
 
 .card {
@@ -75,27 +127,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-.card h2 {
-  margin: 0 0 10px;
-}
-
-.btn {
-  display: block;
-  text-align: center;
-  padding: 12px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
-  box-shadow: 0 0 18px #00c6ff;
-}
-
-.discord {
-  background: linear-gradient(90deg, #5865F2, #404EED);
-  box-shadow: 0 0 18px #5865F2;
-}
-
 footer {
   text-align: center;
   font-size: 12px;
@@ -106,32 +137,32 @@ footer {
 
 <body>
 
-<audio id="music" loop>
+<audio id="music" loop autoplay>
   <source src="https://files.catbox.moe/3v1y8n.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
   <h1>🎮 GAMING HUB 🎮</h1>
 
-  <button class="music-btn" onclick="toggleMusic()">▶ PLAY / PAUSE JUDAS</button>
+  <button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+    🔊 MUSIC ON
+  </button>
 
   <div class="card">
-    <img src="game1.jpg" alt="Game 1">
+    <img src="game1.jpg">
     <h2>🔥 Game One</h2>
-    <a class="btn" href="" target="_blank">Join Game</a>
+    <a class="btn" href="https://inlnk.co/sgTWi" target="_blank">Join Game</a>
   </div>
 
   <div class="card">
-    <img src="game2.jpg" alt="Game 2">
+    <img src="game2.jpg">
     <h2>⚡ Game Two</h2>
-    <a class="btn" href="" target="_blank">Join Game</a>
+    <a class="btn" href="https://inlnk.co/cifXe" target="_blank">Join Game</a>
   </div>
 
   <div class="card">
     <h2>💬 Discord</h2>
-    <a class="btn discord" href="" target="_blank">
-      Join Discord
-    </a>
+    <a class="btn discord" href="#" target="_blank">Join Discord</a>
   </div>
 
   <footer>© 2025 Gaming Hub</footer>
@@ -139,15 +170,26 @@ footer {
 
 <script>
 const music = document.getElementById("music");
-let playing = false;
+const btn = document.getElementById("musicBtn");
+
+let playing = true;
+
+// Fix auto-play (trình duyệt chặn)
+window.addEventListener("click", () => {
+  if (music.paused) music.play();
+}, { once: true });
 
 function toggleMusic() {
-  if (playing) music.pause();
-  else music.play();
+  if (playing) {
+    music.pause();
+    btn.innerText = "🔇 MUSIC OFF";
+  } else {
+    music.play();
+    btn.innerText = "🔊 MUSIC ON";
+  }
   playing = !playing;
 }
 </script>
 
 </body>
 </html>
-
