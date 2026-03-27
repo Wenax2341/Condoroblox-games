@@ -5,101 +5,51 @@
 <title>Gaming Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Minecraft-like font -->
 <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   min-height: 100vh;
-  background: repeating-linear-gradient(
-    45deg,
-    #111 0px,
-    #111 20px,
-    #151515 20px,
-    #151515 40px
-  );
-  animation: bgMove 10s linear infinite;
+  background: #111;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
 }
 
-@keyframes bgMove {
-  from { background-position: 0 0; }
-  to { background-position: 400px 400px; }
-}
-
 .container {
   width: 95%;
   max-width: 420px;
-  background: rgba(0,0,0,0.75);
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 0 35px cyan;
+  background: rgba(0,0,0,0.8);
+  padding: 20px;
+  border-radius: 15px;
 }
 
-h1 {
-  text-align: center;
-  color: cyan;
-  text-shadow: 0 0 15px cyan;
-  margin-bottom: 15px;
-}
-
-.music-btn {
+.btn, .music-btn {
+  display: block;
   width: 100%;
   padding: 12px;
   border-radius: 30px;
   border: none;
-  cursor: pointer;
-  font-family: 'Minecraft', monospace;
-  font-size: 14px;
-  background: linear-gradient(90deg, #00ff88, #00ccff);
-  box-shadow: 0 0 20px #00ffcc;
-  margin-bottom: 15px;
-}
-
-.card {
-  background: #111;
-  border-radius: 14px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 0 18px rgba(0,255,255,0.4);
-}
-
-.card img {
-  width: 100%;
-  border-radius: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
+  color: white;
 }
 
-.card h2 {
-  margin: 0 0 10px;
+.music-btn {
+  background: cyan;
 }
 
 .btn {
-  display: block;
-  text-align: center;
-  padding: 12px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
-  box-shadow: 0 0 18px #00c6ff;
+  background: blue;
 }
 
-.discord {
-  background: linear-gradient(90deg, #5865F2, #404EED);
-  box-shadow: 0 0 18px #5865F2;
-}
-
-footer {
-  text-align: center;
-  font-size: 12px;
-  opacity: 0.7;
+.card {
+  background: #222;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 </style>
 </head>
@@ -107,47 +57,55 @@ footer {
 <body>
 
 <audio id="music" loop>
-  <source src="https://files.catbox.moe/3v1y8n.mp3" type="audio/mpeg">
+  <source src="https://files.catbox.moe/3v1y8n.mp3">
 </audio>
 
 <div class="container">
   <h1>🎮 GAMING HUB 🎮</h1>
 
-  <button class="music-btn" onclick="toggleMusic()">▶ PLAY / PAUSE JUDAS</button>
+  <!-- ❌ KHÔNG dùng onclick nữa -->
+  <button class="music-btn" id="musicBtn">🔊 MUSIC ON</button>
 
   <div class="card">
-    <img src="game1.jpg" alt="Game 1">
-    <h2>🔥 Game One</h2>
-    <a class="btn" href="" target="_blank">Join Game</a>
+    <h2>Game One</h2>
+    <a class="btn" href="https://inlnk.co/sgTWi" target="_blank">Join</a>
   </div>
 
   <div class="card">
-    <img src="game2.jpg" alt="Game 2">
-    <h2>⚡ Game Two</h2>
-    <a class="btn" href="" target="_blank">Join Game</a>
+    <h2>Game Two</h2>
+    <a class="btn" href="https://inlnk.co/cifXe" target="_blank">Join</a>
   </div>
-
-  <div class="card">
-    <h2>💬 Discord</h2>
-    <a class="btn discord" href="" target="_blank">
-      Join Discord
-    </a>
-  </div>
-
-  <footer>© 2025 Gaming Hub</footer>
 </div>
 
 <script>
 const music = document.getElementById("music");
+const btn = document.getElementById("musicBtn");
+
 let playing = false;
 
-function toggleMusic() {
-  if (playing) music.pause();
-  else music.play();
+// 👉 Click lần đầu để bật nhạc (fix iPhone / Chrome)
+document.body.addEventListener("click", function init() {
+  music.play().catch(() => {});
+  playing = true;
+  btn.innerText = "🔊 MUSIC ON";
+  document.body.removeEventListener("click", init);
+});
+
+// 👉 Nút bật/tắt nhạc
+btn.addEventListener("click", function(e) {
+  e.stopPropagation();
+
+  if (playing) {
+    music.pause();
+    btn.innerText = "🔇 MUSIC OFF";
+  } else {
+    music.play();
+    btn.innerText = "🔊 MUSIC ON";
+  }
+
   playing = !playing;
-}
+});
 </script>
 
 </body>
 </html>
-
