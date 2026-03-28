@@ -2,152 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gaming Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Minecraft-like font -->
-<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+<title>Gaming Hub</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  background: repeating-linear-gradient(
-    45deg,
-    #111 0px,
-    #111 20px,
-    #151515 20px,
-    #151515 40px
-  );
-  animation: bgMove 10s linear infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: white;
+        text-align: center;
+    }
 
-@keyframes bgMove {
-  from { background-position: 0 0; }
-  to { background-position: 400px 400px; }
-}
+    h1 {
+        margin-top: 50px;
+        font-size: 40px;
+    }
 
-.container {
-  width: 95%;
-  max-width: 420px;
-  background: rgba(0,0,0,0.75);
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 0 35px cyan;
-}
+    .container {
+        margin-top: 80px;
+    }
 
-h1 {
-  text-align: center;
-  color: cyan;
-  text-shadow: 0 0 15px cyan;
-  margin-bottom: 15px;
-}
+    .game-card {
+        background: #111827;
+        border-radius: 20px;
+        padding: 30px;
+        margin: 20px auto;
+        width: 300px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        transition: transform 0.3s;
+    }
 
-.music-btn {
-  width: 100%;
-  padding: 12px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-family: 'Minecraft', monospace;
-  font-size: 14px;
-  background: linear-gradient(90deg, #00ff88, #00ccff);
-  box-shadow: 0 0 20px #00ffcc;
-  margin-bottom: 15px;
-}
+    .game-card:hover {
+        transform: scale(1.05);
+    }
 
-.card {
-  background: #111;
-  border-radius: 14px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 0 0 18px rgba(0,255,255,0.4);
-}
+    button {
+        margin-top: 15px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 10px;
+        background: #22c55e;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
 
-.card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.card h2 {
-  margin: 0 0 10px;
-}
-
-.btn {
-  display: block;
-  text-align: center;
-  padding: 12px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
-  box-shadow: 0 0 18px #00c6ff;
-}
-
-.discord {
-  background: linear-gradient(90deg, #5865F2, #404EED);
-  box-shadow: 0 0 18px #5865F2;
-}
-
-footer {
-  text-align: center;
-  font-size: 12px;
-  opacity: 0.7;
-}
+    button:hover {
+        background: #16a34a;
+    }
 </style>
 </head>
 
 <body>
 
-<audio id="music" loop>
-  <source src="https://files.catbox.moe/3v1y8n.mp3" type="audio/mpeg">
-</audio>
+<h1>🎮 Gaming Hub</h1>
 
 <div class="container">
-  <h1>🎮 GAMING HUB 🎮</h1>
 
-  <button class="music-btn" onclick="toggleMusic()">▶ PLAY / PAUSE JUDAS</button>
+    <!-- Game 1 -->
+    <div class="game-card">
+        <h2>Game 1</h2>
+        <button onclick="goGame1()">Join Game</button>
+    </div>
 
-  <div class="card">
-    <img src="game1.jpg" alt="Game 1">
-    <h2>🔥 Game One</h2>
-    <a class="btn" href="" target="_blank">Join Game</a>
-  </div>
+    <!-- Game 2 -->
+    <div class="game-card">
+        <h2>Game 2</h2>
+        <button onclick="goGame2()">Join Game</button>
+    </div>
 
-  <div class="card">
-    <img src="game2.jpg" alt="Game 2">
-    <h2>⚡ Game Two</h2>
-    <a class="btn" href="" target="_blank">Join Game</a>
-  </div>
-
-  <div class="card">
-    <h2>💬 Discord</h2>
-    <a class="btn discord" href="" target="_blank">
-      Join Discord
-    </a>
-  </div>
-
-  <footer>© 2025 Gaming Hub</footer>
 </div>
 
 <script>
-const music = document.getElementById("music");
-let playing = false;
+    function goGame1() {
+        window.location.href = "https://inlnk.co/OlAJZ";
+    }
 
-function toggleMusic() {
-  if (playing) music.pause();
-  else music.play();
-  playing = !playing;
-}
+    function goGame2() {
+        window.location.href = "https://inlnk.co/aBXVn";
+    }
 </script>
 
 </body>
 </html>
-
